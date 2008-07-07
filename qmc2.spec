@@ -14,6 +14,7 @@ Patch1:         qmc2-ini.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils, rsync, qt4-devel >= 4.2.2
+BuildRequires:  SDL-devel
 Requires:       hicolor-icon-theme, dribble-menus, sdlmame
 
 %description
@@ -96,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 - Updated to 0.2b3
 - Dropped the qt4 patch, use DISTCFG instead
 - Updated the ini patch to include dat files location
+- Added SDL-devel to BuildRequires
 
 * Sat May 10 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.2.b2
 - Updated to 0.2b2
