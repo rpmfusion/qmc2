@@ -1,8 +1,8 @@
-%define beta b2
+%define beta b3
 
 Name:           qmc2
 Version:        0.2
-Release:        0.2.%{beta}%{?dist}
+Release:        0.3.%{beta}%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -10,7 +10,6 @@ License:        GPLv2
 URL:            http://www.mameworld.net/mamecat
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
 Source1:        %{name}.png
-Patch0:         qmc2-qt4.patch
 Patch1:         qmc2-ini.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -23,7 +22,6 @@ QMC2 is a Qt4 based UNIX MAME frontend supporting both XMAME and SDLMAME.
 
 %prep
 %setup -qn %{name}
-%patch0 -p0 -b .qt4~
 %patch1 -p0 -b .ini~
 
 # create qmc2 desktop file
@@ -42,13 +40,13 @@ EOF
 
 
 %build
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 \
+QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT \
+QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1\
     CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 # remove docs since we are intalling docs in %doc
@@ -94,6 +92,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Jul  7 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.3.b3
+- Updated to 0.2b3
+- Dropped the qt4 patch, use DISTCFG instead
+- Updated the ini patch to include dat files location
+
 * Sat May 10 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.2.b2
 - Updated to 0.2b2
 - Dropped %%{?dist} from %%changelog

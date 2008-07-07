@@ -1,6 +1,10 @@
---- inst/qmc2.ini.template$HOME	2007-04-22 22:29:06.000000000 -0700
-+++ inst/qmc2.ini.template	2007-04-22 22:29:27.000000000 -0700
-@@ -3,3 +3,23 @@
+--- inst/qmc2.ini.template.ini~	2007-10-16 15:38:29.000000000 +0200
++++ inst/qmc2.ini.template	2008-06-29 16:59:47.000000000 +0200
+@@ -1,5 +1,27 @@
+ [Frontend]
+ FilesAndDirectories\DataDirectory=DATADIR/qmc2/
++FilesAndDirectories\EmuInfoDB=DATADIR/mame/mameinfo.dat
++FilesAndDirectories\GameInfoDB=DATADIR/mame/history.dat
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/template.xml
  FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
  FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
