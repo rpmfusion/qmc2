@@ -1,8 +1,8 @@
-%define beta b3
+%define beta b4
 
 Name:           qmc2
 Version:        0.2
-Release:        0.4.%{beta}%{?dist}
+Release:        0.5.%{beta}%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.5.b4
+- Updated to 0.2b4
+
 * Wed Jul 30 2008 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info - 0.2-0.4.b3
 - rebuild for buildsys cflags issue
 
