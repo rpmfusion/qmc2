@@ -2,7 +2,7 @@
 
 Name:           qmc2
 Version:        0.2
-Release:        0.5.%{beta}%{?dist}.1
+Release:        0.6.%{beta}%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -13,12 +13,17 @@ Source1:        %{name}.png
 Patch1:         qmc2-ini.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  desktop-file-utils, rsync, qt4-devel >= 4.2.2
+BuildRequires:  desktop-file-utils
+BuildRequires:  phonon-devel
+BuildRequires:  qt4-devel
+BuildRequires:  rsync
 BuildRequires:  SDL-devel
-Requires:       hicolor-icon-theme, dribble-menus, sdlmame
+Requires:       games-menus
+Requires:       hicolor-icon-theme
+Requires:       sdlmame
 
 %description
-QMC2 is a Qt4 based UNIX MAME frontend supporting both XMAME and SDLMAME.
+QMC2 is a Qt4 based UNIX MAME frontend for SDLMAME.
 
 
 %prep
@@ -47,7 +52,7 @@ QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
 
 %install
 rm -rf $RPM_BUILD_ROOT
-QTDIR=%{_prefix} RSYNC="rsync -rlp" make install DESTDIR=$RPM_BUILD_ROOT\
+RSYNC="rsync -rlp" QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT\
     DISTCFG=1 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 # remove docs since we are intalling docs in %doc
@@ -93,8 +98,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Sun Sep 14 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.5.b4.fc8.1
-- Added a workaround for the rsync issue
+* Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.6.b4
+- Added phonon-devel to BuildRequires
+- Cleaned up BuildRequires and Requires
+- Added rsync failure workaround
 
 * Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.5.b4
 - Updated to 0.2b4
