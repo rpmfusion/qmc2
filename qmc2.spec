@@ -2,7 +2,7 @@
 
 Name:           qmc2
 Version:        0.2
-Release:        0.5.%{beta}%{?dist}
+Release:        0.5.%{beta}%{?dist}.1
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -47,8 +47,8 @@ QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
 
 %install
 rm -rf $RPM_BUILD_ROOT
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1\
-    CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
+QTDIR=%{_prefix} RSYNC="rsync -rlp" make install DESTDIR=$RPM_BUILD_ROOT\
+    DISTCFG=1 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 # remove docs since we are intalling docs in %doc
 pushd $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -93,6 +93,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Sep 14 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.5.b4.fc8.1
+- Added a workaround for the rsync issue
+
 * Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.5.b4
 - Updated to 0.2b4
 
