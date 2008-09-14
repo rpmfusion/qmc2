@@ -11,6 +11,7 @@ URL:            http://www.mameworld.net/mamecat
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
 Source1:        %{name}.png
 Patch1:         qmc2-ini.patch
+Patch2:         qmc2-rsync.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils
@@ -52,8 +53,8 @@ QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
 
 %install
 rm -rf $RPM_BUILD_ROOT
-RSYNC="rsync -rlp" QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT\
-    DISTCFG=1 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
+RSYNC="rsync -rlp" QTDIR=%{_prefix} make install DISTCFG=1\
+    CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 # remove docs since we are intalling docs in %doc
 pushd $RPM_BUILD_ROOT%{_datadir}/%{name}
