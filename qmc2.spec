@@ -54,7 +54,7 @@ QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
 
 %install
 rm -rf $RPM_BUILD_ROOT
-RSYNC="rsync -rlp" QTDIR=%{_prefix} make install DISTCFG=1\
+QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1\
     CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 # remove docs since we are intalling docs in %doc
