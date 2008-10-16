@@ -1,8 +1,8 @@
-%define beta b4
+%define beta b5
 
 Name:           qmc2
 Version:        0.2
-Release:        0.6.%{beta}%{?dist}
+Release:        0.7.%{beta}%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -98,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Oct 16 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.7.b5
+- Updated to 0.2b5
+
 * Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.6.b4
 - Added phonon-devel to BuildRequires
 - Cleaned up BuildRequires and Requires
