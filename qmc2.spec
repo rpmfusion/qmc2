@@ -11,6 +11,7 @@ URL:            http://www.mameworld.net/mamecat
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
 Source1:        %{name}.png
 Patch1:         qmc2-ini.patch
+Patch2:         qmc2-rsync.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils
@@ -29,6 +30,7 @@ QMC2 is a Qt4 based UNIX MAME frontend for SDLMAME.
 %prep
 %setup -qn %{name}
 %patch1 -p0 -b .ini~
+%patch2 -p1 -b .rsync~
 
 # create qmc2 desktop file
 cat > %{name}.desktop << EOF
@@ -104,6 +106,7 @@ rm -rf $RPM_BUILD_ROOT
 * Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.6.b4
 - Added phonon-devel to BuildRequires
 - Cleaned up BuildRequires and Requires
+- Added rsync failure workaround
 
 * Tue Aug 19 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.5.b4
 - Updated to 0.2b4
