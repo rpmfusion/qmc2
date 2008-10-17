@@ -1,11 +1,11 @@
---- qmc2/arch/default.cfg.rsync	2007-12-21 18:43:28.000000000 +0100
-+++ qmc2/arch/default.cfg	2008-09-14 23:06:44.000000000 +0200
+--- qmc2/arch/default.cfg.rsync~	2008-09-21 17:09:20.000000000 +0200
++++ qmc2/arch/default.cfg	2008-10-17 07:22:55.000000000 +0200
 @@ -9,7 +9,7 @@
- TIME     = time
- CD       = cd
- CP       = cp
--RSYNC    = rsync -rlpt
-+RSYNC    = rsync -rlp
- DATE     = date +%Y%m%d%H%M%S
- SED      = sed
- COLRM    = colrm
+ TIME      = time
+ CD        = cd
+ CP        = cp
+-RSYNC     = rsync -rlpt
++RSYNC     = rsync -rlp
+ DATE      = date +%Y%m%d%H%M%S
+ SED       = sed
+ COLRM     = colrm
