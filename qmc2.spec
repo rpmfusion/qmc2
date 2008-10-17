@@ -29,7 +29,7 @@ QMC2 is a Qt4 based UNIX MAME frontend for SDLMAME.
 %prep
 %setup -qn %{name}
 %patch1 -p0 -b .ini~
-%{__mv} arch/Linux/Fedora_release_9.91.cfg arch/Linux/Fedora_release_9.92
+%{__mv} arch/Linux/Fedora_release_9.91.cfg arch/Linux/Fedora_release_9.92.cfg
 
 # create qmc2 desktop file
 cat > %{name}.desktop << EOF
