@@ -2,7 +2,7 @@
 
 Name:           qmc2
 Version:        0.2
-Release:        0.7.%{beta}%{?dist}
+Release:        0.7.%{beta}%{?dist}.1
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -98,6 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Oct 29 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.7.b5.fc9.1
+- Rebuilt, as something seems to have eaten a part of i386 rpm
+
 * Thu Oct 16 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.7.b5
 - Updated to 0.2b5
 
