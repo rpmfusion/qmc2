@@ -1,8 +1,8 @@
-%define beta b5
+%define beta b6
 
 Name:           qmc2
 Version:        0.2
-Release:        0.7.%{beta}%{?dist}.1
+Release:        0.8.%{beta}%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 Group:          Applications/Emulators
@@ -28,7 +28,8 @@ QMC2 is a Qt4 based UNIX MAME frontend for SDLMAME.
 
 %prep
 %setup -qn %{name}
-%patch1 -p0 -b .ini~
+%patch1 -p2 -b .ini~
+%{__cp} arch/Linux/Fedora_release_10.cfg arch/Linux/Fedora_release_10.90.cfg
 
 # create qmc2 desktop file
 cat > %{name}.desktop << EOF
@@ -46,13 +47,13 @@ EOF
 
 
 %build
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1 PRETTY=0\
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1\
+QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 PRETTY=0\
     CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 
 # remove docs since we are intalling docs in %doc
@@ -92,14 +93,18 @@ rm -rf $RPM_BUILD_ROOT
 %doc data/doc/html
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/%{name}
+%{_bindir}/%{name}-sdlmame
 %{_datadir}/%{name}
 %{_datadir}/icons/hicolor/64x64/apps/%{name}.png
 %{_datadir}/applications/*.desktop
 
 
 %changelog
-* Wed Oct 29 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.7.b5.fc9.1
-- Rebuilt, as something seems to have eaten a part of i386 rpm
+* Mon Jan  5 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.8.b6
+- Updated to 0.2b6
+- Updated the ini patch
+- Updated the rawhide fedora-relase workaround
+- Added PRETTY=0 to compilation flags
 
 * Thu Oct 16 2008 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.7.b5
 - Updated to 0.2b5
