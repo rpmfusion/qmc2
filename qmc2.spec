@@ -1,60 +1,95 @@
-%define beta b6
+%define beta b7
 
 Name:           qmc2
 Version:        0.2
-Release:        0.8.%{beta}%{?dist}
-Summary:        M.A.M.E. Catalog / Launcher II
+Release:        0.9.%{beta}%{?dist}
+Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
 License:        GPLv2
-URL:            http://www.mameworld.net/mamecat
+URL:            http://qmc2.arcadehits.net/
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
-Source1:        %{name}.png
 Patch1:         qmc2-ini.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils
+BuildRequires:  libXmu-devel
 BuildRequires:  phonon-devel
 BuildRequires:  qt4-devel
 BuildRequires:  rsync
 BuildRequires:  SDL-devel
 Requires:       games-menus
-Requires:       hicolor-icon-theme
-Requires:       sdlmame
+Requires:       %{name}-binary = %{version}-%{release}
 
 %description
-QMC2 is a Qt4 based UNIX MAME frontend for SDLMAME.
+QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
+contains the common files.
+
+
+%package sdlmame
+Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, SDLMAME support
+Group:          Applications/Emulators
+Requires:       %{name} = %{version}-%{release}
+Requires:       sdlmame
+Provides:       %{name}-binary = %{version}-%{release}
+
+%description sdlmame
+QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
+contains the parts required for SDLMAME support.
+
+
+%package sdlmess
+Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, SDLMESS support
+Group:          Applications/Emulators
+Requires:       %{name} = %{version}-%{release}
+Requires:       sdlmess
+Provides:       %{name}-binary = %{version}-%{release}
+
+%description sdlmess
+QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
+contains the parts required for SDLMESS support.
 
 
 %prep
-%setup -qn %{name}
-%patch1 -p2 -b .ini~
-%{__cp} arch/Linux/Fedora_release_10.cfg arch/Linux/Fedora_release_10.90.cfg
-
-# create qmc2 desktop file
-cat > %{name}.desktop << EOF
-[Desktop Entry]
-Encoding=UTF-8
-Name=%{name}
-GenericName=M.A.M.E. Catalog / Launcher II
-Comment=SDL MAME Frontend
-Exec=%{name}
-Icon=%{name}.png
-Terminal=false
-Type=Application
-Categories=Game;Emulator;
-EOF
+%setup -qcT
+tar -xjf %{SOURCE0}
+mv %{name} sdlmame
+tar -xjf %{SOURCE0}
+mv %{name} sdlmess
+%patch1 -p1 -b .ini~
 
 
 %build
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1 PRETTY=0\
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
+pushd sdlmess
+QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+    PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLMESS
+popd
+
+pushd sdlmame
+QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
+    PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLMAME
+popd
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 PRETTY=0\
-    CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
+
+pushd sdlmess
+QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLMESS QT_TRANSLATION=../../qt4/translations
+popd
+
+#remove the qmc2.ini since we only need one
+rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
+
+pushd sdlmame
+QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    EMULATOR=SDLMAME QT_TRANSLATION=../../qt4/translations
+popd
 
 # remove docs since we are intalling docs in %doc
 pushd $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -62,26 +97,14 @@ rm -fr doc
 ln -s ../doc/%{name}-%{version} doc
 popd
 
-# install fedora desktop file
-desktop-file-install --vendor=dribble \
-    --dir=$RPM_BUILD_ROOT%{_datadir}/applications \
-    %{name}.desktop
-
-# install icon
-install -d $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps
-install -pm 644 %{SOURCE1} $RPM_BUILD_ROOT%{_datadir}/icons/hicolor/64x64/apps
+#validate the desktop files
+desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qmc2-sdlmame.desktop
+desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qmc2-sdlmess.desktop
 
 #fix the executable permissions
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/%{name}
-
-
-%post
-touch --no-create %{_datadir}/icons/hicolor || :
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor || :
-%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
+chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 
 %clean
@@ -90,16 +113,40 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc data/doc/html
-%config(noreplace) %{_sysconfdir}/%{name}
-%{_bindir}/%{name}
-%{_bindir}/%{name}-sdlmame
-%{_datadir}/%{name}
-%{_datadir}/icons/hicolor/64x64/apps/%{name}.png
-%{_datadir}/applications/*.desktop
+%doc sdlmame/data/doc/html
+%config(noreplace) %{_sysconfdir}/qmc2
+%{_bindir}/runonce
+%{_datadir}/qmc2
+
+
+%files sdlmame
+%defattr(-,root,root,-)
+%{_bindir}/qmc2
+%{_bindir}/qmc2-sdlmame
+%{_datadir}/applications/qmc2-sdlmame.desktop
+
+
+%files sdlmess
+%defattr(-,root,root,-)
+%{_bindir}/qmc2-sdlmess
+%{_datadir}/applications/qmc2-sdlmess.desktop
 
 
 %changelog
+* Mon Mar 09 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.9.b7
+- Updated to 0.2b7
+- Dropped the rawhide fedora-release workaround
+- Overhauled for sdlmess support
+- Desktop files now come with the tarball and use the shipped icon
+- Updated Summary and %%description (M.A.M.E. → M.A.M.E./M.E.S.S.)
+- Updated the ini patch
+- Avoid installing qmc2.ini.new
+- Dropped hicolor-icon-theme from Requires
+- Switched to system-wide Qt translations
+- No longer force Windows Qt style
+- Updated the URL
+- Added libXmu-devel to BuildRequires
+
 * Mon Jan  5 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.8.b6
 - Updated to 0.2b6
 - Updated the ini patch

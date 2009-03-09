@@ -1,10 +1,7 @@
---- qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini~	2008-12-21 16:15:01.000000000 +0100
-+++ qmc2-0.2/sdlmame/inst/qmc2.ini.template	2008-12-25 12:01:44.000000000 +0100
-@@ -2,9 +2,45 @@
- FilesAndDirectories\DataDirectory=DATADIR/qmc2/
- FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
- FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
-+GUI\Style=Windows
+--- qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini~	2009-01-16 17:27:17.000000000 +0100
++++ qmc2-0.2/sdlmame/inst/qmc2.ini.template	2009-02-13 14:24:37.000000000 +0100
+@@ -7,7 +7,42 @@
+ qmc2-sdlmess\FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
  
  [MAME]
 +Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
@@ -23,7 +20,6 @@
 +Configuration\Global\state_directory=$HOME/.mame/sta
 +Configuration\Global\video=opengl
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template.xml
-+FilesAndDirectories\ROMPath="DATADIR/mame/roms;DATADIR/mame/chds"
 +FilesAndDirectories\ExecutableFile=/usr/bin/mame
 +FilesAndDirectories\EmuInfoDB=DATADIR/mame/mameinfo.dat
 +FilesAndDirectories\GameInfoDB=DATADIR/mame/history.dat
@@ -45,4 +41,5 @@
 +Configuration\Global\state_directory=$HOME/.mess/sta
 +Configuration\Global\video=opengl
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMESS/template.xml
++FilesAndDirectories\ExecutableFile=/usr/bin/mess
 +FilesAndDirectories\GameInfoDB=DATADIR/mess/sysinfo.dat
