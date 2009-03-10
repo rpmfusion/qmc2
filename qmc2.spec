@@ -10,6 +10,7 @@ License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
 Patch1:         qmc2-ini.patch
+Patch2:         qmc2-gcc44.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils
@@ -57,6 +58,14 @@ mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
 %patch1 -p1 -b .ini~
+
+pushd sdlmess
+%patch2 -p0 -b .gcc44
+popd
+
+pushd sdlmame
+%patch2 -p0 -b .gcc44
+popd
 
 
 %build
@@ -146,6 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 - No longer force Windows Qt style
 - Updated the URL
 - Added libXmu-devel to BuildRequires
+- Added gcc-4.4 fix from SVN
 
 * Mon Jan  5 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.8.b6
 - Updated to 0.2b6

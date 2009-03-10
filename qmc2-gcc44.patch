@@ -1,0 +1,22 @@
+Index: options.cpp
+===================================================================
+--- options.cpp	(wersja 1328)
++++ options.cpp	(wersja 1329)
+@@ -1731,7 +1731,7 @@
+   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonCalibrateAxes_clicked()");
+ #endif
+ 
+-  if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || index < 0 ) {
++  if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
+     toolButtonMapJoystick->setChecked(TRUE);
+     on_toolButtonMapJoystick_clicked();
+     return;
+@@ -1784,7 +1784,7 @@
+   qmc2MainWindow->log(QMC2_LOG_FRONTEND, "DEBUG: Options::on_toolButtonTestJoystick_clicked()");
+ #endif
+ 
+-  if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || index < 0 ) {
++  if ( comboBoxSelectJoysticks->currentText() == tr("No joysticks found") || comboBoxSelectJoysticks->currentIndex() < 0 ) {
+     toolButtonMapJoystick->setChecked(TRUE);
+     on_toolButtonMapJoystick_clicked();
+     return;
