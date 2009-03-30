@@ -2,7 +2,7 @@
 
 Name:           qmc2
 Version:        0.2
-Release:        0.10.%{beta}%{?dist}
+Release:        0.11.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -57,14 +57,17 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
-%patch1 -p1 -b .ini~
 
 pushd sdlmess
+%patch1 -p2 -b .ini~
 %patch2 -p0 -b .gcc44
+mv arch/Linux/Fedora_release_10.91.cfg arch/Linux/Fedora_release_10.92.cfg
 popd
 
 pushd sdlmame
+%patch1 -p2 -b .ini~
 %patch2 -p0 -b .gcc44
+mv arch/Linux/Fedora_release_10.91.cfg arch/Linux/Fedora_release_10.92.cfg
 popd
 
 
@@ -142,6 +145,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Mar 30 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.11.b7
+- Handle the template properly
+- Updated the configs for Fedora 11 Beta
+
 * Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.2-0.10.b7
 - rebuild for new F11 features
 
