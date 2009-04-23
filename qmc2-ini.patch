@@ -1,7 +1,7 @@
---- qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini~	2009-01-16 17:27:17.000000000 +0100
-+++ qmc2-0.2/sdlmame/inst/qmc2.ini.template	2009-02-13 14:24:37.000000000 +0100
-@@ -7,7 +7,42 @@
- qmc2-sdlmess\FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
+--- inst/qmc2.ini.template.ini~	2009-03-30 18:33:59.000000000 +0200
++++ inst/qmc2.ini.template	2009-04-16 11:49:51.000000000 +0200
+@@ -17,7 +17,42 @@
+ qmc2-sdlmess\FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
  
  [MAME]
 +Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
