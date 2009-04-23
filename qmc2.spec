@@ -1,8 +1,8 @@
-%define beta b7
+%define beta b8
 
 Name:           qmc2
 Version:        0.2
-Release:        0.9.%{beta}%{?dist}
+Release:        0.12.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -56,7 +56,14 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
-%patch1 -p1 -b .ini~
+
+pushd sdlmess
+%patch1 -p0 -b .ini~
+popd
+
+pushd sdlmame
+%patch1 -p0 -b .ini~
+popd
 
 
 %build
@@ -133,6 +140,19 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Apr 23 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.12.b8
+- Updated to 0.2b8
+- Updated the ini patch
+- Dropped the upstreamed gcc44 patch
+- Dropped the F11 Beta workaround
+
+* Mon Mar 30 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.11.b7
+- Handle the template properly
+- Updated the configs for Fedora 11 Beta
+
+* Sun Mar 29 2009 Thorsten Leemhuis <fedora [AT] leemhuis [DOT] info> - 0.2-0.10.b7
+- rebuild for new F11 features
+
 * Mon Mar 09 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.9.b7
 - Updated to 0.2b7
 - Dropped the rawhide fedora-release workaround
@@ -146,6 +166,7 @@ rm -rf $RPM_BUILD_ROOT
 - No longer force Windows Qt style
 - Updated the URL
 - Added libXmu-devel to BuildRequires
+- Added gcc-4.4 fix from SVN
 
 * Mon Jan  5 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.8.b6
 - Updated to 0.2b6
