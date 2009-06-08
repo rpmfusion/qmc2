@@ -1,8 +1,8 @@
-%define beta b8
+%define beta b9
 
 Name:           qmc2
 Version:        0.2
-Release:        0.12.%{beta}%{?dist}
+Release:        0.13.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -140,6 +140,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Jun 08 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.13.b9
+- Updated to 0.2b9
+
 * Thu Apr 23 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.12.b8
 - Updated to 0.2b8
 - Updated the ini patch
