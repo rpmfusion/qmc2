@@ -59,10 +59,12 @@ mv %{name} sdlmess
 
 pushd sdlmess
 %patch1 -p0 -b .ini~
+cp arch/Linux/Fedora_release_11.cfg arch/Linux/Fedora_release_11.90.cfg
 popd
 
 pushd sdlmame
 %patch1 -p0 -b .ini~
+cp arch/Linux/Fedora_release_11.cfg arch/Linux/Fedora_release_11.90.cfg
 popd
 
 
@@ -142,6 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Mon Jul 20 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.14.b10
 - Updated to 0.2b10
+- Added F12 rawhide config
 
 * Mon Jun 08 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.13.b9
 - Updated to 0.2b9
