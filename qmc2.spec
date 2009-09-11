@@ -1,8 +1,8 @@
-%define beta b10
+%define beta b11
 
 Name:           qmc2
 Version:        0.2
-Release:        0.14.%{beta}%{?dist}
+Release:        0.15.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -59,12 +59,10 @@ mv %{name} sdlmess
 
 pushd sdlmess
 %patch1 -p0 -b .ini~
-cp arch/Linux/Fedora_release_11.cfg arch/Linux/Fedora_release_11.90.cfg
 popd
 
 pushd sdlmame
 %patch1 -p0 -b .ini~
-cp arch/Linux/Fedora_release_11.cfg arch/Linux/Fedora_release_11.90.cfg
 popd
 
 
@@ -142,6 +140,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Sep 11 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.15.b11
+- Updated to 0.2b11
+- Updated the ini patch
+- Dropped F12 rawhide workaround
+
 * Mon Jul 20 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.14.b10
 - Updated to 0.2b10
 - Added F12 rawhide config

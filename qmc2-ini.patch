@@ -1,7 +1,7 @@
---- inst/qmc2.ini.template.ini~	2009-03-30 18:33:59.000000000 +0200
-+++ inst/qmc2.ini.template	2009-04-16 11:49:51.000000000 +0200
-@@ -17,7 +17,42 @@
- qmc2-sdlmess\FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
+--- inst/qmc2.ini.template.ini~	2009-07-22 23:25:59.000000000 +0200
++++ inst/qmc2.ini.template	2009-09-11 09:29:17.000000000 +0200
+@@ -19,7 +19,42 @@
+ qmc2-sdlmess\FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
  
  [MAME]
 +Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
