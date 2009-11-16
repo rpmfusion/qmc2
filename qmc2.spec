@@ -10,6 +10,7 @@ License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
 Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
 Patch1:         qmc2-ini.patch
+Patch2:         qmc2-cflags.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils
@@ -59,14 +60,21 @@ mv %{name} sdlmess
 
 pushd sdlmess
 %patch1 -p0 -b .ini~
+%patch2 -p0 -b .cflags
+mv arch/Linux/Fedora_release_11.92.cfg arch/Linux/Fedora_release_12.cfg
 popd
 
 pushd sdlmame
 %patch1 -p0 -b .ini~
+%patch2 -p0 -b .cflags
+mv arch/Linux/Fedora_release_11.92.cfg arch/Linux/Fedora_release_12.cfg
 popd
 
 
 %build
+%if 0%{?fedora} >= 12
+export CXX_FLAGS=-fno-var-tracking-assignments
+%endif
 pushd sdlmess
 QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
@@ -140,8 +148,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Sun Nov 01 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.16.b12
+* Mon Nov 16 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.16.b12
 - Updated to 0.2b12
+- Worked around RH bug 532763 for Fedora 12 and above
+- Added Fedora 12 config
 
 * Fri Sep 11 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.15.b11
 - Updated to 0.2b11
