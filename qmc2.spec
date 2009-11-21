@@ -62,12 +62,14 @@ pushd sdlmess
 %patch1 -p0 -b .ini~
 %patch2 -p0 -b .cflags
 mv arch/Linux/Fedora_release_11.92.cfg arch/Linux/Fedora_release_12.cfg
+cp arch/Linux/Fedora_release_12.cfg arch/Linux/Fedora_release_13.cfg
 popd
 
 pushd sdlmame
 %patch1 -p0 -b .ini~
 %patch2 -p0 -b .cflags
 mv arch/Linux/Fedora_release_11.92.cfg arch/Linux/Fedora_release_12.cfg
+cp arch/Linux/Fedora_release_12.cfg arch/Linux/Fedora_release_13.cfg
 popd
 
 
@@ -148,10 +150,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Mon Nov 16 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.16.b12
+* Sat Nov 21 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.16.b12
 - Updated to 0.2b12
 - Worked around RH bug 532763 for Fedora 12 and above
-- Added Fedora 12 config
+- Added Fedora 12 and Fedora 13 configs
 
 * Fri Sep 11 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.15.b11
 - Updated to 0.2b11
