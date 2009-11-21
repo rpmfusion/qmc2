@@ -2,7 +2,7 @@
 
 Name:           qmc2
 Version:        0.2
-Release:        0.16.%{beta}%{?dist}
+Release:        0.16.%{beta}%{?dist}.1
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
