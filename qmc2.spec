@@ -1,8 +1,8 @@
-%define beta b12
+%define beta b13
 
 Name:           qmc2
 Version:        0.2
-Release:        0.16.%{beta}%{?dist}
+Release:        0.17.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -67,6 +67,9 @@ popd
 
 
 %build
+%if 0%{?fedora} >= 12
+export CXX_FLAGS=-fno-var-tracking-assignments
+%endif
 pushd sdlmess
 QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
     PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
@@ -140,8 +143,15 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Sun Nov 01 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.16.b12
+* Sat Jan 02 2010 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.17.b13
+- Updated to 0.2b13
+- Dropped the cflags patch
+- Dropped the additional Fedora configs
+
+* Sat Nov 21 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.16.b12
 - Updated to 0.2b12
+- Worked around RH bug 532763 for Fedora 12 and above
+- Added Fedora 12 and Fedora 13 configs
 
 * Fri Sep 11 2009 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.15.b11
 - Updated to 0.2b11
