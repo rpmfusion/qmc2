@@ -1,8 +1,8 @@
-%define beta b13
+%define beta b14
 
 Name:           qmc2
 Version:        0.2
-Release:        0.17.%{beta}%{?dist}
+Release:        0.18.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -58,28 +58,23 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlmess
 
 pushd sdlmess
-%patch1 -p0 -b .ini~
+%patch1 -p0 -b .ini
 popd
 
 pushd sdlmame
-%patch1 -p0 -b .ini~
+%patch1 -p0 -b .ini
 popd
 
 
 %build
-%if 0%{?fedora} >= 12
-export CXX_FLAGS=-fno-var-tracking-assignments
-%endif
 pushd sdlmess
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
-    PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS
+make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMESS PRETTY=0 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
 
 pushd sdlmame
-QTDIR=%{_prefix} make %{?_smp_mflags} CTIME=0 DISTCFG=1\
-    PRETTY=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME
+make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMAME PRETTY=0 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
 
 
@@ -87,7 +82,7 @@ popd
 rm -rf $RPM_BUILD_ROOT
 
 pushd sdlmess
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMESS QT_TRANSLATION=../../qt4/translations
 popd
@@ -96,7 +91,7 @@ popd
 rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
 
 pushd sdlmame
-QTDIR=%{_prefix} make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME QT_TRANSLATION=../../qt4/translations
 popd
@@ -143,6 +138,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Mar 15 2010 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.18.b14
+- Updated to 0.2b14
+- Dropped --fno-var-tracking-assignments
+
 * Sat Jan 02 2010 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.17.b13
 - Updated to 0.2b13
 - Dropped the cflags patch
