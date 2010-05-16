@@ -1,8 +1,8 @@
-%define beta b14
+%define beta b15
 
 Name:           qmc2
 Version:        0.2
-Release:        0.18.%{beta}%{?dist}
+Release:        0.19.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -56,14 +56,7 @@ tar -xjf %{SOURCE0}
 mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
-
-pushd sdlmess
-%patch1 -p0 -b .ini
-popd
-
-pushd sdlmame
-%patch1 -p0 -b .ini
-popd
+%patch1 -p1 -b .ini
 
 
 %build
@@ -138,6 +131,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun May 16 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.19.b15
+- Updated to 0.2b15
+- Updated the ini template patch to include Catver.ini
+
 * Mon Mar 15 2010 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.18.b14
 - Updated to 0.2b14
 - Dropped --fno-var-tracking-assignments
