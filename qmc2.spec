@@ -15,7 +15,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  desktop-file-utils
 BuildRequires:  libXmu-devel
 BuildRequires:  phonon-devel
-BuildRequires:  qt4-devel
+BuildRequires:  qt-webkit-devel
 BuildRequires:  rsync
 BuildRequires:  SDL-devel
 Requires:       games-menus
@@ -134,6 +134,7 @@ rm -rf $RPM_BUILD_ROOT
 * Sun May 16 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.19.b15
 - Updated to 0.2b15
 - Updated the ini template patch to include Catver.ini
+- s/qt4-devel/qt-webkit-devel due to changes in qt package
 
 * Mon Mar 15 2010 Julian Sikorski <belegdol[at]gmail[dot]com> - 0.2-0.18.b14
 - Updated to 0.2b14
