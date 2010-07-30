@@ -15,7 +15,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires:  desktop-file-utils
 BuildRequires:  libXmu-devel
 BuildRequires:  phonon-devel
-BuildRequires:  qt-webkit-devel
+BuildRequires:  qt4-webkit-devel
 BuildRequires:  rsync
 BuildRequires:  SDL-devel
 Requires:       games-menus
