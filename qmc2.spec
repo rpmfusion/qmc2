@@ -1,8 +1,8 @@
-%define beta b15
+%define beta b16
 
 Name:           qmc2
 Version:        0.2
-Release:        0.19.%{beta}%{?dist}
+Release:        0.20.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -131,6 +131,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jul 30 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.20.b16
+- Updated to 0.2b16
+
 * Sun May 16 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.19.b15
 - Updated to 0.2b15
 - Updated the ini template patch to include Catver.ini
