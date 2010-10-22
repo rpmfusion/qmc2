@@ -1,8 +1,8 @@
-%define beta b16
+%define beta b17
 
 Name:           qmc2
 Version:        0.2
-Release:        0.20.%{beta}%{?dist}
+Release:        0.21.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -131,6 +131,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Oct 22 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.21.b17
+- Updated to 0.2b17
+
 * Fri Jul 30 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.20.b16
 - Updated to 0.2b16
 
