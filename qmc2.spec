@@ -61,11 +61,13 @@ mv %{name} sdlmess
 
 %build
 pushd sdlmess
+cp arch/Linux/Fedora_release_14.cfg arch/Linux/Fedora_release_15.cfg
 make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMESS PRETTY=0 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
 
 pushd sdlmame
+cp arch/Linux/Fedora_release_14.cfg arch/Linux/Fedora_release_15.cfg
 make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMAME PRETTY=0 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
@@ -133,6 +135,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri Oct 22 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.21.b17
 - Updated to 0.2b17
+- Added Fedora 15 config
 
 * Fri Jul 30 2010 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.20.b16
 - Updated to 0.2b16
