@@ -1,8 +1,8 @@
-%define beta b19
+%define beta b20
 
 Name:           qmc2
 Version:        0.2
-Release:        0.23.%{beta}%{?dist}
+Release:        0.24.%{beta}%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 Group:          Applications/Emulators
@@ -131,6 +131,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Jun 29 2011 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.24.b20
+- Updated to 0.2b20
+- Updated the ini patch
+
 * Sun Apr 03 2011 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.23.b19
 - Updated to 0.2b19
 
