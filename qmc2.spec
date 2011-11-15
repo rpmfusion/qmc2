@@ -1,16 +1,12 @@
-%define beta b20
-
 Name:           qmc2
-Version:        0.2
-Release:        0.24.%{beta}%{?dist}
+Version:        0.34
+Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
-Group:          Applications/Emulators
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
-Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.%{beta}.tar.bz2
+Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 Patch1:         qmc2-ini.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libXmu-devel
@@ -89,7 +85,7 @@ make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     EMULATOR=SDLMAME QT_TRANSLATION=../../qt4/translations
 popd
 
-# remove docs since we are intalling docs in %doc
+#remove docs since we are installing docs in %%doc
 pushd $RPM_BUILD_ROOT%{_datadir}/%{name}
 rm -fr doc
 ln -s ../doc/%{name}-%{version} doc
@@ -105,12 +101,7 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
 chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
 %files
-%defattr(-,root,root,-)
 %doc sdlmame/data/doc/html
 %config(noreplace) %{_sysconfdir}/qmc2
 %{_bindir}/runonce
@@ -118,19 +109,21 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %files sdlmame
-%defattr(-,root,root,-)
 %{_bindir}/qmc2
 %{_bindir}/qmc2-sdlmame
 %{_datadir}/applications/qmc2-sdlmame.desktop
 
 
 %files sdlmess
-%defattr(-,root,root,-)
 %{_bindir}/qmc2-sdlmess
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 
 %changelog
+* Tue Nov 15 2011 Julian Sikorski <belegdol@fedoraproject.org> - 0.34-1
+- Updated to 0.34 (new versioning scheme)
+- Dropped obsolete Group, Buildroot, %%clean and %%defattr
+
 * Wed Jun 29 2011 Julian Sikorski <belegdol@fedoraproject.org> - 0.2-0.24.b20
 - Updated to 0.2b20
 - Updated the ini patch
