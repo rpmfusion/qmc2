@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.34
+Version:        0.35
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
@@ -15,7 +15,7 @@ BuildRequires:  qt4-webkit-devel
 BuildRequires:  rsync
 BuildRequires:  SDL-devel
 Requires:       games-menus
-Requires:       %{name}-binary = %{version}-%{release}
+Requires:       %{name}-binary%{?_isa} = %{version}-%{release}
 
 %description
 QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
@@ -25,9 +25,9 @@ contains the common files.
 %package sdlmame
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, SDLMAME support
 Group:          Applications/Emulators
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       sdlmame
-Provides:       %{name}-binary = %{version}-%{release}
+Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
 
 %description sdlmame
 QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
@@ -37,9 +37,9 @@ contains the parts required for SDLMAME support.
 %package sdlmess
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, SDLMESS support
 Group:          Applications/Emulators
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       sdlmess
-Provides:       %{name}-binary = %{version}-%{release}
+Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
 
 %description sdlmess
 QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
@@ -120,6 +120,11 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 
 %changelog
+* Mon Feb 06 2012 Julian Sikorski <belegdol@fedoraproject.org> - 0.35-1
+- Updated to 0.35
+- Updated the ini patch
+- Made the inter-subpackage dependencies arch-specific
+
 * Tue Nov 15 2011 Julian Sikorski <belegdol@fedoraproject.org> - 0.34-1
 - Updated to 0.34 (new versioning scheme)
 - Dropped obsolete Group, Buildroot, %%clean and %%defattr

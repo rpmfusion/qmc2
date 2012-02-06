@@ -1,6 +1,6 @@
-diff -up qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini qmc2-0.2/sdlmame/inst/qmc2.ini.template
---- qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini	2011-05-24 08:42:43.000000000 +0200
-+++ qmc2-0.2/sdlmame/inst/qmc2.ini.template	2011-06-06 00:02:16.853946910 +0200
+diff -up qmc2-0.35/sdlmame/inst/qmc2.ini.template.ini qmc2-0.35/sdlmame/inst/qmc2.ini.template
+--- qmc2-0.35/sdlmame/inst/qmc2.ini.template.ini	2012-01-28 22:14:08.000000000 +0100
++++ qmc2-0.35/sdlmame/inst/qmc2.ini.template	2012-02-04 21:35:54.034321890 +0100
 @@ -1,8 +1,24 @@
  [Frontend]
  qmc2-sdlmame\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
@@ -26,10 +26,10 @@ diff -up qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini qmc2-0.2/sdlmame/inst/qmc2.
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template.xml
  FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
  FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
-@@ -12,8 +28,27 @@ FilesAndDirectories\ControllerDirectory=
- FilesAndDirectories\MarqueeDirectory=DATADIR/qmc2/mrq/
- FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
- FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
+@@ -15,8 +31,27 @@ FilesAndDirectories\PCBDirectory=DATADIR
+ FilesAndDirectories\SoftwareSnapDirectory=DATADIR/qmc2/sws/
+ FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
+ FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
 +FilesAndDirectories\ExecutableFile=/usr/bin/mame
 +FilesAndDirectories\EmuInfoDB=DATADIR/mame/mameinfo.dat
 +FilesAndDirectories\GameInfoDB=DATADIR/mame/history.dat
@@ -54,9 +54,9 @@ diff -up qmc2-0.2/sdlmame/inst/qmc2.ini.template.ini qmc2-0.2/sdlmame/inst/qmc2.
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMESS/template.xml
  FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
  FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
-@@ -23,3 +58,5 @@ FilesAndDirectories\ControllerDirectory=
- FilesAndDirectories\MarqueeDirectory=DATADIR/qmc2/mrq/
- FilesAndDirectories\TitleDirectory=DATADIR/qmc2/ttl/
- FilesAndDirectories\PCBDirectory=DATADIR/qmc2/pcb/
+@@ -29,3 +64,5 @@ FilesAndDirectories\PCBDirectory=DATADIR
+ FilesAndDirectories\SoftwareSnapDirectory=DATADIR/qmc2/sws/
+ FilesAndDirectories\SoftwareNotesFolder=DATADIR/qmc2/swn/
+ FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
 +FilesAndDirectories\ExecutableFile=/usr/bin/mess
 +FilesAndDirectories\GameInfoDB=DATADIR/mess/sysinfo.dat
