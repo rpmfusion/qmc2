@@ -1,6 +1,6 @@
 Name:           qmc2
 Version:        0.35
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
 
 License:        GPLv2
@@ -120,6 +120,9 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 
 %changelog
+* Thu Feb 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 0.35-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Mon Feb 06 2012 Julian Sikorski <belegdol@fedoraproject.org> - 0.35-1
 - Updated to 0.35
 - Updated the ini patch
