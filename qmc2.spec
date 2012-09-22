@@ -1,7 +1,7 @@
 Name:           qmc2
-Version:        0.36
+Version:        0.37
 Release:        1%{?dist}
-Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, common files
+Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
@@ -18,32 +18,30 @@ Requires:       games-menus
 Requires:       %{name}-binary%{?_isa} = %{version}-%{release}
 
 %description
-QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
+QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
 contains the common files.
 
 
 %package sdlmame
-Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, SDLMAME support
-Group:          Applications/Emulators
+Summary:        M.A.M.E. Catalog / Launcher II
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       sdlmame
+Requires:       mame
 Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
 
 %description sdlmame
-QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
-contains the parts required for SDLMAME support.
+QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
+contains the parts required for MAME support.
 
 
 %package sdlmess
-Summary:        M.A.M.E./M.E.S.S. Catalog / Launcher II, SDLMESS support
-Group:          Applications/Emulators
+Summary:        M.E.S.S. Catalog / Launcher II
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       sdlmess
+Requires:       mess
 Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
 
 %description sdlmess
-QMC2 is a Qt4 based UNIX frontend for SDLMAME and SDLMESS. This package
-contains the parts required for SDLMESS support.
+QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
+contains the parts required for MESS support.
 
 
 %prep
@@ -120,6 +118,13 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 
 %changelog
+* Fri Sep 21 2012 Julian Sikorski <belegdol@fedoraproject.org> - 0.37-1
+- Updated to 0.37
+- Updated the ini patch
+- SDLMAME/SDLMESS have been gone for a while, so just use them internally
+- Require mame/mess since the compatibility provides were dropped
+- Updated summaries
+
 * Tue May 22 2012 Julian Sikorski <belegdol@fedoraproject.org> - 0.36-1
 - Updated to 0.36
 
