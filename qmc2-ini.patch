@@ -33,8 +33,9 @@ diff -up qmc2-0.37/sdlmame/inst/qmc2.ini.template.ini qmc2-0.37/sdlmame/inst/qmc
  FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
  FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
 +FilesAndDirectories\ExecutableFile=/usr/bin/mame
-+FilesAndDirectories\EmuInfoDB=DATADIR/mame/mameinfo.dat
 +FilesAndDirectories\GameInfoDB=DATADIR/mame/history.dat
++FilesAndDirectories\EmuInfoDB=DATADIR/mame/mameinfo.dat
++FilesAndDirectories\SoftwareInfoDB=DATADIR/mame/history.dat
 +FilesAndDirectories\CatverIni=DATADIR/mame/Catver.ini
  
  [MESS]
@@ -61,8 +62,9 @@ diff -up qmc2-0.37/sdlmame/inst/qmc2.ini.template.ini qmc2-0.37/sdlmame/inst/qmc
  FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
  FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
 +FilesAndDirectories\ExecutableFile=/usr/bin/mess
-+FilesAndDirectories\EmuInfoDB=/usr/share/mess/messinfo.dat
 +FilesAndDirectories\GameInfoDB=DATADIR/mess/sysinfo.dat
++FilesAndDirectories\EmuInfoDB=/usr/share/mess/messinfo.dat
++FilesAndDirectories\SoftwareInfoDB=DATADIR/mame/history.dat
 +FilesAndDirectories\CategoryIni=/usr/share/mess/category.ini
  
  [UME]
