@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.37
+Version:        0.38
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
@@ -118,6 +118,10 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 
 
 %changelog
+* Sat Jan 12 2013 Julian Sikorski <belegdol@fedoraproject.org> - 0.38-1
+- Updated to 0.38
+- Updated the ini patch
+
 * Fri Sep 21 2012 Julian Sikorski <belegdol@fedoraproject.org> - 0.37-1
 - Updated to 0.37
 - Updated the ini patch
