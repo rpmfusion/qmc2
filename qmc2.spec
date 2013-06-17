@@ -1,11 +1,11 @@
 Name:           qmc2
-Version:        0.38
+Version:        0.39
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
-Source0:        http://dl.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
+Source0:        http://downloads.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 Patch1:         qmc2-ini.patch
 
 BuildRequires:  desktop-file-utils
@@ -44,6 +44,14 @@ QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
 contains the parts required for MESS support.
 
 
+%package -n qchdman
+Summary:        Qt CHDMAN GUI
+Requires:       mame-tools
+
+%description -n qchdman
+A stand-alone graphical user interface / front-end to chdman
+
+
 %prep
 %setup -qcT
 tar -xjf %{SOURCE0}
@@ -51,6 +59,7 @@ mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
 %patch1 -p1 -b .ini
+chmod 644 sdlmame/tools/qchdman/scriptwidget.*
 
 
 %build
@@ -61,6 +70,9 @@ popd
 
 pushd sdlmame
 make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMAME PRETTY=0 \
+    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
+
+make qchdman %{?_smp_mflags} CTIME=0 DISTCFG=1 PRETTY=0 \
     PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
 popd
 
@@ -81,6 +93,10 @@ pushd sdlmame
 make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
     PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
     EMULATOR=SDLMAME QT_TRANSLATION=../../qt4/translations
+
+make qchdman-install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
+    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
+    QT_TRANSLATION=../../qt4/translations 
 popd
 
 #remove docs since we are installing docs in %%doc
@@ -92,11 +108,7 @@ popd
 #validate the desktop files
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qmc2-sdlmame.desktop
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qmc2-sdlmess.desktop
-
-#fix the executable permissions
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmame
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/qmc2-sdlmess
-chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
+desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %files
@@ -117,7 +129,17 @@ chmod 755 $RPM_BUILD_ROOT%{_bindir}/runonce
 %{_datadir}/applications/qmc2-sdlmess.desktop
 
 
+%files -n qchdman
+%{_bindir}/qchdman
+%{_datadir}/applications/qchdman.desktop
+
+
 %changelog
+* Mon Jun 17 2013 Julian Sikorski <belegdol@fedoraproject.org> - 0.39-1
+- Updated to 0.39
+- Added qchdman
+- Fixed Source0 URL
+
 * Sat Jan 12 2013 Julian Sikorski <belegdol@fedoraproject.org> - 0.38-1
 - Updated to 0.38
 - Updated the ini patch
