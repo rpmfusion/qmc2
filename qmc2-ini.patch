@@ -13,7 +13,7 @@ diff -up qmc2-0.38/sdlmame/inst/qmc2.ini.template.ini qmc2-0.38/sdlmame/inst/qmc
 +Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
 +Configuration\Global\samplepath=DATADIR/mame/samples
 +Configuration\Global\artpath="DATADIR/mame/artwork;DATADIR/mame/effects"
-+Configuration\Global\cheat_file=DATADIR/mame/cheat.dat
++Configuration\Global\cheatpath=DATADIR/mame/cheat
 +Configuration\Global\ctrlrpath=DATADIR/mame/ctrlr
 +Configuration\Global\cfg_directory=$HOME/.mame/cfg
 +Configuration\Global\comment_directory=$HOME/.mame/comments
@@ -42,7 +42,7 @@ diff -up qmc2-0.38/sdlmame/inst/qmc2.ini.template.ini qmc2-0.38/sdlmame/inst/qmc
 +Configuration\Global\rompath="DATADIR/mess/roms;DATADIR/mess/chds"
 +Configuration\Global\samplepath=DATADIR/mess/samples
 +Configuration\Global\artpath="DATADIR/mess/artwork;DATADIR/mess/effects"
-+Configuration\Global\cheat_file=DATADIR/mess/cheat.dat
++Configuration\Global\cheatpath=DATADIR/mess/cheat
 +Configuration\Global\ctrlrpath=DATADIR/mess/ctrlr
 +Configuration\Global\cfg_directory=$HOME/.mess/cfg
 +Configuration\Global\comment_directory=$HOME/.mess/comments
