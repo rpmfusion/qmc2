@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.41
+Version:        0.42
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
@@ -56,8 +56,10 @@ A stand-alone graphical user interface / front-end to chdman
 %setup -qcT
 tar -xjf %{SOURCE0}
 mv %{name} sdlmame
+ln -s Fedora.cfg sdlmame/arch/Linux/Fedora_release_21.cfg
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
+ln -s Fedora.cfg sdlmess/arch/Linux/Fedora_release_21.cfg
 %patch1 -p1 -b .ini
 chmod 644 sdlmame/tools/qchdman/scriptwidget.*
 
@@ -135,6 +137,9 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Thu Jan 09 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.42-1
+- Updated to 0.42
+
 * Sun Nov 10 2013 Julian Sikorski <belegdol@fedoraproject.org> - 0.41-1
 - Updated to 0.41
 
