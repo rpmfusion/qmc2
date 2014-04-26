@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.42
+Version:        0.43
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
@@ -7,6 +7,7 @@ License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
 Source0:        http://downloads.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 Patch1:         qmc2-ini.patch
+Patch2:         qmc2-0.43-os-detect.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libXmu-devel
@@ -27,6 +28,7 @@ Summary:        M.A.M.E. Catalog / Launcher II
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       mame
 Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
+Provides:       bundled(lzma-sdk) = 9.22
 
 %description sdlmame
 QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
@@ -38,6 +40,7 @@ Summary:        M.E.S.S. Catalog / Launcher II
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       mess
 Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
+Provides:       bundled(lzma-sdk) = 9.22
 
 %description sdlmess
 QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
@@ -56,11 +59,10 @@ A stand-alone graphical user interface / front-end to chdman
 %setup -qcT
 tar -xjf %{SOURCE0}
 mv %{name} sdlmame
-ln -s Fedora.cfg sdlmame/arch/Linux/Fedora_release_21.cfg
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
-ln -s Fedora.cfg sdlmess/arch/Linux/Fedora_release_21.cfg
 %patch1 -p1 -b .ini
+%patch2 -p1 -b .os-detect
 chmod 644 sdlmame/tools/qchdman/scriptwidget.*
 
 
@@ -137,6 +139,11 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Sat Apr 26 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.43-1
+- Updated to 0.43
+- Updated the ini patch to use category.ini supplied with qmc2 by default
+- Added bundled(lzma-sdk) = 9.22 to Provides
+
 * Thu Jan 09 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.42-1
 - Updated to 0.42
 
