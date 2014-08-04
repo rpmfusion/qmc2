@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.43
+Version:        0.44
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
@@ -7,7 +7,6 @@ License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
 Source0:        http://downloads.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 Patch1:         qmc2-ini.patch
-Patch2:         qmc2-0.43-os-detect.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libXmu-devel
@@ -62,7 +61,6 @@ mv %{name} sdlmame
 tar -xjf %{SOURCE0}
 mv %{name} sdlmess
 %patch1 -p1 -b .ini
-%patch2 -p1 -b .os-detect
 chmod 644 sdlmame/tools/qchdman/scriptwidget.*
 
 
@@ -139,6 +137,9 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Sun Aug 03 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.44-1
+- Updated to 0.44
+
 * Sat Apr 26 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.43-1
 - Updated to 0.43
 - Updated the ini patch to use category.ini supplied with qmc2 by default
