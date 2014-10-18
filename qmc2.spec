@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.44
+Version:        0.45
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
@@ -137,6 +137,9 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Sat Oct 18 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.45-1
+- Updated to 0.45
+
 * Sun Aug 03 2014 Julian Sikorski <belegdol@fedoraproject.org> - 0.44-1
 - Updated to 0.44
 
