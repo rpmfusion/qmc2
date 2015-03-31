@@ -62,7 +62,7 @@ diff -up qmc2-0.38/sdlmame/inst/qmc2.ini.template.ini qmc2-0.38/sdlmame/inst/qmc
  FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
  FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
 +FilesAndDirectories\ExecutableFile=/usr/bin/mess
-+FilesAndDirectories\GameInfoDB=DATADIR/mess/sysinfo.dat
++FilesAndDirectories\GameInfoDB=DATADIR/mame/history.dat
 +FilesAndDirectories\EmuInfoDB=DATADIR/mess/messinfo.dat
 +FilesAndDirectories\SoftwareInfoDB=DATADIR/mame/history.dat
  
