@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.49
+Version:        0.50
 Release:        1%{?dist}
 Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
 
@@ -137,6 +137,10 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Tue Mar 31 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.50-1
+- Updated to 0.50
+- Switched to use history.dat instead of sysinfo.dat by default
+
 * Thu Feb 26 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.49-1
 - Updated to 0.49
 
