@@ -1,12 +1,13 @@
 Name:           qmc2
-Version:        0.50
+Version:        0.53
 Release:        1%{?dist}
-Summary:        M.A.M.E./M.E.S.S./U.M.E. Catalog / Launcher II, common files
+Summary:        M.A.M.E. Catalog / Launcher II
 
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
 Source0:        http://downloads.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
-Patch1:         qmc2-ini.patch
+Patch0:         %{name}-%{version}-docdestdir.patch
+Patch1:         %{name}-ini.patch
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  libXmu-devel
@@ -15,35 +16,14 @@ BuildRequires:  qt4-webkit-devel
 BuildRequires:  rsync
 BuildRequires:  SDL-devel
 Requires:       games-menus
-Requires:       %{name}-binary%{?_isa} = %{version}-%{release}
+Provides:       bundled(lzma-sdk) = 9.22
+Provides:       %{name}-sdlmame = %{version}-%{release}
+Provides:       %{name}-sdlmess = %{version}-%{release}
+Obsoletes:      %{name}-sdlmame < 0.50-2
+Obsoletes:      %{name}-sdlmess < 0.50-2
 
 %description
-QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
-contains the common files.
-
-
-%package sdlmame
-Summary:        M.A.M.E. Catalog / Launcher II
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       mame
-Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
-Provides:       bundled(lzma-sdk) = 9.22
-
-%description sdlmame
-QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
-contains the parts required for MAME support.
-
-
-%package sdlmess
-Summary:        M.E.S.S. Catalog / Launcher II
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       mess
-Provides:       %{name}-binary%{?_isa} = %{version}-%{release}
-Provides:       bundled(lzma-sdk) = 9.22
-
-%description sdlmess
-QMC2 is a Qt4 based UNIX frontend for MAME and MESS. This package
-contains the parts required for MESS support.
+QMC2 is a Qt4 based UNIX frontend for MAME and MESS.
 
 
 %package -n qchdman
@@ -55,51 +35,28 @@ A stand-alone graphical user interface / front-end to chdman
 
 
 %prep
-%setup -qcT
-tar -xjf %{SOURCE0}
-mv %{name} sdlmame
-tar -xjf %{SOURCE0}
-mv %{name} sdlmess
-%patch1 -p1 -b .ini
-chmod 644 sdlmame/tools/qchdman/scriptwidget.*
+%setup -qn %{name}
+%patch0 -p1 -b .docdestdir
+%patch1 -p1 -b .fedora
+ln -s Fedora.cfg arch/Linux/Fedora_release_22.cfg
 
 
 %build
-pushd sdlmess
-make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMESS PRETTY=0 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
-popd
-
-pushd sdlmame
-make %{?_smp_mflags} CTIME=0 DISTCFG=1 EMULATOR=SDLMAME PRETTY=0 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
-
-make qchdman %{?_smp_mflags} CTIME=0 DISTCFG=1 PRETTY=0 \
-    PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir}
-popd
+make %{?_smp_mflags} DISTCFG=1
+make qchdman %{?_smp_mflags} DISTCFG=1
+make doc %{?_smp_mflags} DISTCFG=1
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-pushd sdlmess
-make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMESS QT_TRANSLATION=../../qt4/translations
-popd
+make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 PREFIX=%{_prefix} \
+    QT_TRANSLATION=../../qt4/translations
 
-#remove the qmc2.ini since we only need one
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/qmc2/qmc2.ini
+make qchdman-install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 PREFIX=%{_prefix} \
+    QT_TRANSLATION=../../qt4/translations
 
-pushd sdlmame
-make install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    EMULATOR=SDLMAME QT_TRANSLATION=../../qt4/translations
-
-make qchdman-install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 \
-    PRETTY=0 CTIME=0 PREFIX=%{_prefix} SYSCONFDIR=%{_sysconfdir} \
-    QT_TRANSLATION=../../qt4/translations 
-popd
+make doc-install DESTDIR=$RPM_BUILD_ROOT DISTCFG=1 MAN_DIR=%{_mandir}
 
 #remove docs since we are installing docs in %%doc
 pushd $RPM_BUILD_ROOT%{_datadir}/%{name}
@@ -107,36 +64,39 @@ rm -fr doc
 ln -s ../doc/%{name}-%{version} doc
 popd
 
+#remove the qmc2-arcade manpage as we are not building it
+rm -f $RPM_BUILD_ROOT%{_mandir}/man6/qmc2-arcade.6*
+
 #validate the desktop files
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qmc2-sdlmame.desktop
-desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qmc2-sdlmess.desktop
 desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %files
-%doc sdlmame/data/doc/html
+%doc data/doc/html
 %config(noreplace) %{_sysconfdir}/qmc2
-%{_bindir}/runonce
-%{_datadir}/qmc2
-
-
-%files sdlmame
 %{_bindir}/qmc2
 %{_bindir}/qmc2-sdlmame
 %{_datadir}/applications/qmc2-sdlmame.desktop
-
-
-%files sdlmess
-%{_bindir}/qmc2-sdlmess
-%{_datadir}/applications/qmc2-sdlmess.desktop
-
+%{_mandir}/man6/qmc2-main-gui.6*
+%{_mandir}/man6/qmc2-sdlmame.6*
+%{_mandir}/man6/qmc2.6*
+%{_datadir}/qmc2
 
 %files -n qchdman
 %{_bindir}/qchdman
 %{_datadir}/applications/qchdman.desktop
+%{_mandir}/man6/qchdman.6*
 
 
 %changelog
+* Tue Jul 07 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.53-1
+- Updated to 0.53
+- Dropped -sdlmess subpackage
+- Added man pages
+- Cleaned up the spec file slightly
+- Updated the default configuration
+
 * Tue Mar 31 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.50-1
 - Updated to 0.50
 - Switched to use history.dat instead of sysinfo.dat by default

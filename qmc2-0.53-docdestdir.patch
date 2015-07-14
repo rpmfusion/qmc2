@@ -1,0 +1,14 @@
+diff -up qmc2/Makefile.docdestdir qmc2/Makefile
+--- qmc2/Makefile.docdestdir	2015-07-07 23:25:49.911217482 +0200
++++ qmc2/Makefile	2015-07-07 23:24:57.125638148 +0200
+@@ -1480,8 +1480,8 @@ man-clean:
+ doc-install: man-install
+ man-install:
+ 	@$(ECHO) "Installing man-pages to $(MAN_DIR)/man6"
+-	@$(MKDIR) $(MAN_DIR)/man6
+-	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(MAN_DIR)/man6/
++	@$(MKDIR) $(DESTDIR)$(MAN_DIR)/man6
++	@$(RSYNC) --exclude '*svn*' ./data/doc/man/*.gz $(DESTDIR)$(MAN_DIR)/man6/
+ endif
+ 
+ # process translations
