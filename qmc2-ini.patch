@@ -1,10 +1,9 @@
 diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
---- qmc2/inst/qmc2.ini.template.fedora	2014-03-13 18:05:21.010845945 +0100
-+++ qmc2/inst/qmc2.ini.template	2015-07-14 21:20:45.196473431 +0200
-@@ -2,8 +2,29 @@
- qmc2-sdlmame\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
- qmc2-sdlmess\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
- qmc2-sdlume\FilesAndDirectories\DataDirectory=DATADIR/qmc2/
+--- qmc2/inst/qmc2.ini.template.fedora	2015-07-30 23:30:57.773647889 +0200
++++ qmc2/inst/qmc2.ini.template	2015-07-30 23:33:14.933219911 +0200
+@@ -1,7 +1,28 @@
+ [Frontend]
+ FilesAndDirectories\DataDirectory=DATADIR/qmc2/
 +FilesAndDirectories\MameHistoryDat=DATADIR/mame/history.dat
 +FilesAndDirectories\MessSysinfoDat=DATADIR/mame/history.dat
 +FilesAndDirectories\MameInfoDat=DATADIR/mame/mameinfo.dat
@@ -28,10 +27,10 @@ diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
 +Configuration\Global\diff_directory=$HOME/.mame/diff
 +Configuration\Global\comment_directory=$HOME/.mame/comments
 +Configuration\Global\video=opengl
- FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template.xml
+ FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template-SDL2.xml
  FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
  FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
-@@ -18,6 +39,10 @@ FilesAndDirectories\SoftwareNotesFolder=
+@@ -16,3 +37,7 @@ FilesAndDirectories\SoftwareNotesFolder=
  FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
  FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
  FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
@@ -39,6 +38,3 @@ diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
 +FilesAndDirectories\SoftwareInfoDB=DATADIR/mame/history.dat
 +FilesAndDirectories\CatverIni=DATADIR/mame/Catver.ini
 +FilesAndDirectories\CategoryIni=DATADIR/qmc2/cat/category.ini
- 
- [MESS]
- FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMESS/template.xml

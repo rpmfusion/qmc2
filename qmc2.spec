@@ -1,12 +1,11 @@
 Name:           qmc2
-Version:        0.53
+Version:        0.54
 Release:        1%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 License:        GPLv2
 URL:            http://qmc2.arcadehits.net/
 Source0:        http://downloads.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
-Patch0:         %{name}-%{version}-docdestdir.patch
 Patch1:         %{name}-ini.patch
 
 BuildRequires:  desktop-file-utils
@@ -36,9 +35,7 @@ A stand-alone graphical user interface / front-end to chdman
 
 %prep
 %setup -qn %{name}
-%patch0 -p1 -b .docdestdir
 %patch1 -p1 -b .fedora
-ln -s Fedora.cfg arch/Linux/Fedora_release_22.cfg
 
 
 %build
@@ -90,6 +87,11 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Thu Jul 30 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.54-1
+- Updated to 0.54
+- Dropped upstreamed patch
+- Updated the -ini patch
+
 * Tue Jul 07 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.53-1
 - Updated to 0.53
 - Dropped -sdlmess subpackage
