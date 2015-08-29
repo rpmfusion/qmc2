@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.54
+Version:        0.55
 Release:        1%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
@@ -87,6 +87,9 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Sat Aug 29 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.55-1
+- Updated to 0.55
+
 * Thu Jul 30 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.54-1
 - Updated to 0.54
 - Dropped upstreamed patch
