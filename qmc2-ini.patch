@@ -1,13 +1,8 @@
 diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
---- qmc2/inst/qmc2.ini.template.fedora	2015-07-30 23:30:57.773647889 +0200
-+++ qmc2/inst/qmc2.ini.template	2015-07-30 23:33:14.933219911 +0200
-@@ -1,7 +1,28 @@
- [Frontend]
+--- qmc2/inst/qmc2.ini.template.fedora	2015-07-27 21:39:38.945456464 +0200
++++ qmc2/inst/qmc2.ini.template	2015-10-30 08:11:36.658005588 +0100
+@@ -2,6 +2,23 @@
  FilesAndDirectories\DataDirectory=DATADIR/qmc2/
-+FilesAndDirectories\MameHistoryDat=DATADIR/mame/history.dat
-+FilesAndDirectories\MessSysinfoDat=DATADIR/mame/history.dat
-+FilesAndDirectories\MameInfoDat=DATADIR/mame/mameinfo.dat
-+FilesAndDirectories\MessInfoDat=DATADIR/mame/messinfo.dat
  
  [MAME]
 +Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
@@ -30,11 +25,9 @@ diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template-SDL2.xml
  FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
  FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
-@@ -16,3 +37,7 @@ FilesAndDirectories\SoftwareNotesFolder=
+@@ -16,3 +33,5 @@ FilesAndDirectories\SoftwareNotesFolder=
  FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
  FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
  FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
 +FilesAndDirectories\ExecutableFile=/usr/bin/mame
-+FilesAndDirectories\SoftwareInfoDB=DATADIR/mame/history.dat
-+FilesAndDirectories\CatverIni=DATADIR/mame/Catver.ini
 +FilesAndDirectories\CategoryIni=DATADIR/qmc2/cat/category.ini

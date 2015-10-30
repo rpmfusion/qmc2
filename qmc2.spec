@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.56
+Version:        0.57
 Release:        1%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
@@ -87,6 +87,10 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Fri Oct 30 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.57-1
+- Updated to 0.57
+- Dropped the dat files from ini patch now that mame-data-extras is retired
+
 * Thu Oct 01 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.56-1
 - Updated to 0.56
 
