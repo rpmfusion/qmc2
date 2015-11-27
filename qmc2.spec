@@ -1,10 +1,10 @@
 Name:           qmc2
-Version:        0.57
+Version:        0.58
 Release:        1%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
 License:        GPLv2
-URL:            http://qmc2.arcadehits.net/
+URL:            http://qmc2.batcom-it.net
 Source0:        http://downloads.sourceforge.net/qmc2/%{name}-%{version}.tar.bz2
 Patch1:         %{name}-ini.patch
 
@@ -87,6 +87,10 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Fri Nov 27 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.58-1
+- Updated to 0.58
+- Updated the URL
+
 * Fri Oct 30 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.57-1
 - Updated to 0.57
 - Dropped the dat files from ini patch now that mame-data-extras is retired
