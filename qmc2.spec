@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.58
+Version:        0.59
 Release:        1%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
@@ -13,7 +13,7 @@ BuildRequires:  libXmu-devel
 BuildRequires:  phonon-devel
 BuildRequires:  qt4-webkit-devel
 BuildRequires:  rsync
-BuildRequires:  SDL-devel
+BuildRequires:  SDL2-devel
 Requires:       games-menus
 Provides:       bundled(lzma-sdk) = 9.22
 Provides:       %{name}-sdlmame = %{version}-%{release}
@@ -87,6 +87,10 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Thu Dec 31 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.59-1
+- Updated to 0.59
+- Switched to SDL2
+
 * Fri Nov 27 2015 Julian Sikorski <belegdol@fedoraproject.org> - 0.58-1
 - Updated to 0.58
 - Updated the URL
