@@ -1,5 +1,5 @@
 Name:           qmc2
-Version:        0.60
+Version:        0.61
 Release:        1%{?dist}
 Summary:        M.A.M.E. Catalog / Launcher II
 
@@ -87,6 +87,9 @@ desktop-file-validate $RPM_BUILD_ROOT%{_datadir}/applications/qchdman.desktop
 
 
 %changelog
+* Sat Mar 12 2016 Julian Sikorski <belegdol@fedoraproject.org> - 0.61-1
+- Updated to 0.161
+
 * Thu Jan 28 2016 Julian Sikorski <belegdol@fedoraproject.org> - 0.60-1
 - Updated to 0.160
 
