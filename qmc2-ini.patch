@@ -1,18 +1,21 @@
 diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
---- qmc2/inst/qmc2.ini.template.fedora	2015-07-27 21:39:38.945456464 +0200
-+++ qmc2/inst/qmc2.ini.template	2015-10-30 08:11:36.658005588 +0100
-@@ -2,6 +2,23 @@
+--- qmc2/inst/qmc2.ini.template.fedora	2015-12-03 19:23:35.000000000 +0100
++++ qmc2/inst/qmc2.ini.template	2016-04-07 23:03:36.817631306 +0200
+@@ -2,6 +2,26 @@
  FilesAndDirectories\DataDirectory=DATADIR/qmc2/
  
  [MAME]
-+Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
-+Configuration\Global\hashpath=DATADIR/mame/hash
-+Configuration\Global\samplepath=DATADIR/mame/samples
 +Configuration\Global\artpath="DATADIR/mame/artwork;DATADIR/mame/effects"
-+Configuration\Global\ctrlrpath=DATADIR/mame/ctrlr
-+Configuration\Global\fontpath=DATADIR/mame/fonts
++Configuration\Global\bgfx_path="DATADIR/mame/bgfx"
 +Configuration\Global\cheatpath=DATADIR/mame/cheat
 +Configuration\Global\crosshairpath=DATADIR/mame/crosshair
++Configuration\Global\ctrlrpath=DATADIR/mame/ctrlr
++Configuration\Global\fontpath=DATADIR/mame/fonts
++Configuration\Global\hashpath=DATADIR/mame/hash
++Configuration\Global\languagepath=DATADIR/mame/language
++Configuration\Global\pluginspath=DATADIR/mame/plugins
++Configuration\Global\rompath="DATADIR/mame/roms;DATADIR/mame/chds"
++Configuration\Global\samplepath=DATADIR/mame/samples
 +Configuration\Global\inipath="$HOME/.mame/ini;/etc/mame"
 +Configuration\Global\cfg_directory=$HOME/.mame/cfg
 +Configuration\Global\nvram_directory=$HOME/.mame/nvram
@@ -25,7 +28,7 @@ diff -up qmc2/inst/qmc2.ini.template.fedora qmc2/inst/qmc2.ini.template
  FilesAndDirectories\OptionsTemplateFile=DATADIR/qmc2/opt/SDLMAME/template-SDL2.xml
  FilesAndDirectories\PreviewDirectory=DATADIR/qmc2/prv/
  FilesAndDirectories\FlyerDirectory=DATADIR/qmc2/fly/
-@@ -16,3 +33,5 @@ FilesAndDirectories\SoftwareNotesFolder=
+@@ -16,3 +36,5 @@ FilesAndDirectories\SoftwareNotesFolder=
  FilesAndDirectories\SoftwareNotesTemplate=DATADIR/qmc2/swn/template.html
  FilesAndDirectories\SystemNotesFolder=DATADIR/qmc2/gmn/
  FilesAndDirectories\SystemNotesTemplate=DATADIR/qmc2/gmn/template.html
