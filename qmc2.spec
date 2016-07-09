@@ -36,6 +36,7 @@ A stand-alone graphical user interface / front-end to chdman
 %prep
 %setup -qn %{name}
 %patch1 -p1 -b .fedora
+ln -s Fedora.cfg arch/Linux/Fedora_release_25.cfg
 
 
 %build
